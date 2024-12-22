@@ -1,0 +1,25 @@
+services:
+    postgres:
+        container_name: postgres_y_container
+        image: postgres:15
+        working_dir: /app
+        restart: always
+        ports:
+            - "55432:5432"
+        environment:
+            POSTGRES_USER: marketsquare
+            POSTGRES_PASSWORD: marketsquare-password
+            POSTGRES_DB: y
+        volumes:
+            - "postgres_y_volume:/var/lib/postgresql/data/"
+    solr:
+        image: tchappui/solr:6.6.6
+        container_name: solr_y_container
+        ports:
+            - "58983:8983"
+        volumes:
+            - solr_y_volume:/opt/solr/solr
+
+volumes:
+    postgres_y_volume:
+    solr_y_volume:
